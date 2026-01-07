@@ -1,0 +1,1 @@
+/usr/bin/gcc -g -Wl,--dependency-file=CMakeFiles/zaawansowanyRaycasting.dir/link.d CMakeFiles/zaawansowanyRaycasting.dir/main.c.o -o zaawansowanyRaycasting

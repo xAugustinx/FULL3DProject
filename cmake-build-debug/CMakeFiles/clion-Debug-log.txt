@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "Unix Makefiles" -S /home/au/CLionProjects/zaawansowanyRaycasting -B /home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug
+-- Configuring done (0.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug

@@ -1,0 +1,3 @@
+/home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug/CMakeFiles/full3DProject.dir
+/home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug/CMakeFiles/rebuild_cache.dir

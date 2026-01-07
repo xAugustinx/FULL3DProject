@@ -1,0 +1,145 @@
+#include <stdio.h>
+#include <SDL2/SDL.h>
+#include <math.h>
+#include <hip/hip_runtime.h>
+
+#define TRUE 1
+#define FALSE 0
+#define PI 3.14
+
+#define rozdzielczosc 360.0f
+#define windowRealResolution 800
+#define polRozdzielczosc  rozdzielczosc/2
+#define rozmiarMapy 100
+
+unsigned char turnON = 1;
+unsigned char EscON = 0;
+
+typedef struct {unsigned char red; unsigned char green; unsigned char blue;} kolor;
+typedef struct {double x; double y; double z; } obiektStatyczny;
+typedef struct {obiektStatyczny xyz; double azymutalny; double zenitalny; } obiektDynamiczny;
+
+SDL_Renderer* meowRender;
+obiektDynamiczny gracz = {0,0,0, 1.720000,0};
+obiektStatyczny * mapaTablica;
+unsigned int mapaTablicaLicznik = 2;
+
+unsigned char tablicaDoRenderowania[(int)rozdzielczosc][(int)rozdzielczosc][3];
+
+unsigned char szukanie(int x, int y, int z  ) {
+    for (int i = 1; i < mapaTablicaLicznik; i++) {
+        if (mapaTablica[i].x == x && mapaTablica[i].y == y && mapaTablica[i].z == z  ) return TRUE;
+    }
+    return FALSE;
+}
+
+__global__ void cuda_hello(){
+    obiektDynamiczny pG = gracz;
+    for (int yKrokow = polRozdzielczosc * -1; yKrokow <= polRozdzielczosc; yKrokow++ ) {
+        for (int xKrokow = -polRozdzielczosc; xKrokow <= polRozdzielczosc; xKrokow++) {
+
+            int zm = yKrokow/rozdzielczosc * 5;
+
+            double FOV = 2.0f;
+            double FOV2 = 1.0;
+
+            double stepX = cos(pG.zenitalny + (yKrokow/rozdzielczosc)*FOV   ) * sin(xKrokow/rozdzielczosc*FOV2 + pG.azymutalny );
+            double stepY = sin(pG.zenitalny + (yKrokow/rozdzielczosc)*FOV  );
+            double setpZ = cos(pG.zenitalny + (yKrokow/rozdzielczosc)*FOV ) * cos(xKrokow/rozdzielczosc*FOV2 + pG.azymutalny );
+
+            obiektDynamiczny pS = pG;
+
+
+            unsigned char colorIntensiv = 255;
+
+            while (1) {
+                pS.xyz.x += stepX;
+                pS.xyz.y += stepY;
+                pS.xyz.z += setpZ;
+
+                if (szukanie((int)pS.xyz.x, (int)pS.xyz.y, (int)pS.xyz.z) ) break;
+                colorIntensiv-= 6;
+                if (colorIntensiv <= 0 || pS.xyz.x > rozmiarMapy ||  pS.xyz.y > rozmiarMapy ||  pS.xyz.z > rozmiarMapy
+                || pS.xyz.x < -rozmiarMapy ||  pS.xyz.y < -rozmiarMapy ||  pS.xyz.z < -rozmiarMapy ) {colorIntensiv = 0; break; }
+            }
+
+            for (int iz = 0; iz < 3; iz++) tablicaDoRenderowania[yKrokow + polRozdzielczosc,xKrokow + polRozdzielczosc ][iz] = colorIntensiv;
+
+            SDL_SetRenderDrawColor(meowRender, colorIntensiv,colorIntensiv,colorIntensiv,0);
+            SDL_RenderDrawPoint(meowRender,xKrokow + polRozdzielczosc,yKrokow + polRozdzielczosc );
+
+
+        }
+    }
+}
+
+int main(void) {
+    mapaTablica = malloc(sizeof(obiektStatyczny) * mapaTablicaLicznik);
+    obiektStatyczny meow = { 2,2,0};
+    mapaTablica[mapaTablicaLicznik -1] = meow;
+    SDL_Window* meowOkno = SDL_CreateWindow ("FajneOkno",windowRealResolution,windowRealResolution,windowRealResolution,windowRealResolution,SDL_WINDOW_SHOWN);
+    meowRender = SDL_CreateRenderer (meowOkno, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Event meowEvent;
+    SDL_RenderSetLogicalSize(meowRender,rozdzielczosc,rozdzielczosc);
+
+    while (turnON) {
+
+        hipLaunchKernelGGL(cuda_hello, dim3(rozdzielczosc/4), dim3(rozdzielczosc*4), 0, 0, 5);
+
+        //secition of SDL2
+        while (SDL_PollEvent(&meowEvent)) {
+            if (meowEvent.type == SDL_QUIT ) { turnON = 0; }
+            else if (meowEvent.type == SDL_KEYDOWN) {
+
+                if (meowEvent.key.keysym.sym == SDLK_ESCAPE) {
+                    EscON++;
+                    if (EscON > 1) {EscON = 0;}
+                    SDL_ShowCursor(SDL_ENABLE);
+                }
+                else if (meowEvent.key.keysym.sym == SDLK_SPACE) gracz.xyz.y -= 0.50;
+                else if (meowEvent.key.keysym.sym == SDLK_LSHIFT ) gracz.xyz.y += 0.50;
+                else if (meowEvent.key.keysym.sym == SDLK_w || meowEvent.key.keysym.sym == SDLK_s) {
+                    int mnoznik = 1;
+                    if (meowEvent.key.keysym.sym == SDLK_s) {mnoznik = -1;}
+
+                    gracz.xyz.x += sin(gracz.azymutalny) * (double)mnoznik;
+                    gracz.xyz.z += cos(gracz.azymutalny) * (double)mnoznik;
+                }
+                else if (meowEvent.key.keysym.sym == SDLK_a || meowEvent.key.keysym.sym == SDLK_d) {
+                    int mnoznik = -1;
+                    if (meowEvent.key.keysym.sym == SDLK_a) {mnoznik = 1;}
+
+                    gracz.xyz.x +=  cos(gracz.azymutalny) * (double)mnoznik;
+                    gracz.xyz.z +=  sin(gracz.azymutalny) * (double)mnoznik;
+                }
+
+                else if (meowEvent.key.keysym.sym == SDLK_LEFT ||  meowEvent.key.keysym.sym == SDLK_RIGHT || meowEvent.key.keysym.sym == SDLK_UP ||   meowEvent.key.keysym.sym == SDLK_DOWN) {
+                    if (gracz.azymutalny > 2*PI ) {gracz.azymutalny = 0.02;}
+                    else if (gracz.azymutalny < 0 ) { gracz.azymutalny = 2*PI - 0.02;}
+                    if (gracz.zenitalny > 2*PI ) {gracz.zenitalny = 0.02;}
+                    else if (gracz.zenitalny < 0 ) { gracz.zenitalny = 2*PI - 0.02;}
+                }
+            }
+            else if (!FALSE && (meowEvent.type == SDL_MOUSEMOTION && !EscON && (meowEvent.motion.yrel || meowEvent.motion.xrel) ) )
+            {
+                SDL_ShowCursor(SDL_DISABLE);
+                gracz.zenitalny += meowEvent.motion.yrel /50.0f;
+                gracz.azymutalny += meowEvent.motion.xrel /50.0f;
+
+                if (gracz.azymutalny > 2*PI ) {gracz.azymutalny = 0.02;}
+                else if (gracz.azymutalny < 0 ) { gracz.azymutalny = 2*PI - 0.02;}
+                if (gracz.zenitalny > 2*PI ) {gracz.zenitalny = 0.02;}
+                else if (gracz.zenitalny < 0 ) { gracz.zenitalny = 2*PI - 0.02;}
+
+                SDL_WarpMouseInWindow(meowOkno, windowRealResolution / 2, windowRealResolution / 2);
+            }
+
+        }
+
+        printf ("%d|%d|%d|%f|%f\n",(int)gracz.xyz.x,(int)gracz.xyz.y,(int)gracz.xyz.z,gracz.azymutalny,gracz.zenitalny);
+
+        SDL_RenderPresent(meowRender);
+        SDL_RenderClear(meowRender);
+    }
+
+}
