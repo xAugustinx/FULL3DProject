@@ -1,1 +1,1 @@
-/usr/bin/gcc -g -Wl,--dependency-file=CMakeFiles/full3DProject.dir/link.d CMakeFiles/full3DProject.dir/copyMain.c.o -o full3DProject  -Wl,-rpath,/opt/rocm/lib /usr/lib/libSDL2main.a /usr/lib/libSDL2-2.0.so.0.3200.60 -lSDL2_image -lm /opt/rocm/lib/libamdhip64.so.7.1.52802
+/usr/bin/gcc -g -Wl,--dependency-file=CMakeFiles/full3DProject.dir/link.d CMakeFiles/full3DProject.dir/copyMain.c.o -o full3DProject  -Wl,-rpath,/opt/rocm/lib -lglfw -lvulkan /usr/lib/libSDL2main.a /usr/lib/libSDL2-2.0.so.0.3200.60 -lSDL2_image -lm /opt/rocm/lib/libamdhip64.so.7.1.52802

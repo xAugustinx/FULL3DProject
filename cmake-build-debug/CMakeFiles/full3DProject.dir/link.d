@@ -3,6 +3,8 @@ full3DProject: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   CMakeFiles/full3DProject.dir/copyMain.c.o \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libglfw.so \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libvulkan.so \
   /usr/lib/libSDL2main.a \
   /usr/lib/libSDL2-2.0.so.0.3200.60 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libSDL2_image.so \
@@ -86,6 +88,10 @@ full3DProject: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
 CMakeFiles/full3DProject.dir/copyMain.c.o:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libglfw.so:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libvulkan.so:
 
 /usr/lib/libSDL2main.a:
 

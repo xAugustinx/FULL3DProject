@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <math.h>
-#include <hip/hip_runtime.h>
 #include <pthread.h>
 #include <unistd.h>
 
@@ -29,8 +28,6 @@ typedef struct {obiektStatyczny xyz; double azymutalny; double zenitalny; } obie
 obiektDynamiczny gracz = {0,0,0, 4.77,2.3};
 obiektStatyczny * mapaTablica;
 oneByte everMouse[4];
-
-__global__ void dodaj_tablice(float* a, float* b, float* wynik, int n) {}
 
 void * odczekanie() {
     usleep(100000);
@@ -76,9 +73,9 @@ int main(void) {
                 unsigned char colorIntensiv = 255;
 
                 while (1) {
-                    pS.xyz.x += stepX; pS.xyz.y += stepY; pS.xyz.z += stepZ;
+                    pS.xyz.x += stepX/10.0f; pS.xyz.y += stepY/10.0f; pS.xyz.z += stepZ/10.0f;
                     if (szukanie(round(pS.xyz.x), round(pS.xyz.y), round(pS.xyz.z)) ) break;
-                    if (colorIntensiv >= 7) colorIntensiv-= 7;
+                    if (colorIntensiv >= 7) colorIntensiv-= 1;
                     if (colorIntensiv < 1 || pS.xyz.x > rozmiarMapy ||  pS.xyz.y > rozmiarMapy ||  pS.xyz.z > rozmiarMapy
                     || pS.xyz.x < -rozmiarMapy ||  pS.xyz.y < -rozmiarMapy ||  pS.xyz.z < -rozmiarMapy ) {colorIntensiv = 0; break; }
                 }
@@ -150,7 +147,7 @@ int main(void) {
                 }
             }
         }
-
+        SDL_Delay(32);
         printf ("%d|%d|%d|%f|%f\n",(int)gracz.xyz.x,(int)gracz.xyz.y,(int)gracz.xyz.z,gracz.azymutalny,gracz.zenitalny);
         SDL_RenderPresent(meowRender);
         SDL_RenderClear(meowRender);

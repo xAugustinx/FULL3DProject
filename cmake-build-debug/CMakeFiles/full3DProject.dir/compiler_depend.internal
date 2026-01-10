@@ -3,26 +3,6 @@
 
 CMakeFiles/full3DProject.dir/copyMain.c.o
  /home/au/CLionProjects/zaawansowanyRaycasting/copyMain.c
- /opt/rocm/include/hip/amd_detail/amd_channel_descriptor.h
- /opt/rocm/include/hip/amd_detail/amd_hip_common.h
- /opt/rocm/include/hip/amd_detail/amd_hip_gl_interop.h
- /opt/rocm/include/hip/amd_detail/amd_hip_runtime.h
- /opt/rocm/include/hip/amd_detail/amd_hip_runtime_pt_api.h
- /opt/rocm/include/hip/amd_detail/amd_hip_vector_types.h
- /opt/rocm/include/hip/amd_detail/hip_prof_str.h
- /opt/rocm/include/hip/amd_detail/host_defines.h
- /opt/rocm/include/hip/channel_descriptor.h
- /opt/rocm/include/hip/driver_types.h
- /opt/rocm/include/hip/hip_common.h
- /opt/rocm/include/hip/hip_deprecated.h
- /opt/rocm/include/hip/hip_runtime.h
- /opt/rocm/include/hip/hip_runtime_api.h
- /opt/rocm/include/hip/hip_vector_types.h
- /opt/rocm/include/hip/hip_version.h
- /opt/rocm/include/hip/library_types.h
- /opt/rocm/include/hip/linker_types.h
- /opt/rocm/include/hip/surface_types.h
- /opt/rocm/include/hip/texture_types.h
  /usr/include/SDL2/SDL.h
  /usr/include/SDL2/SDL_assert.h
  /usr/include/SDL2/SDL_atomic.h
@@ -77,13 +57,18 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/alloca.h
  /usr/include/bits/atomic_wide_counter.h
  /usr/include/bits/byteswap.h
+ /usr/include/bits/confname.h
+ /usr/include/bits/cpu-set.h
  /usr/include/bits/endian.h
  /usr/include/bits/endianness.h
+ /usr/include/bits/environments.h
  /usr/include/bits/floatn-common.h
  /usr/include/bits/floatn.h
  /usr/include/bits/flt-eval-method.h
  /usr/include/bits/fp-fast.h
  /usr/include/bits/fp-logb.h
+ /usr/include/bits/getopt_core.h
+ /usr/include/bits/getopt_posix.h
  /usr/include/bits/libc-header-start.h
  /usr/include/bits/libm-simd-decl-stubs.h
  /usr/include/bits/local_lim.h
@@ -94,11 +79,14 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/bits/mathcalls.h
  /usr/include/bits/posix1_lim.h
  /usr/include/bits/posix2_lim.h
+ /usr/include/bits/posix_opt.h
  /usr/include/bits/pthread_stack_min-dynamic.h
  /usr/include/bits/pthread_stack_min.h
  /usr/include/bits/pthreadtypes-arch.h
  /usr/include/bits/pthreadtypes.h
+ /usr/include/bits/sched.h
  /usr/include/bits/select.h
+ /usr/include/bits/setjmp.h
  /usr/include/bits/stdint-intn.h
  /usr/include/bits/stdint-least.h
  /usr/include/bits/stdint-uintn.h
@@ -107,6 +95,7 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/bits/struct_mutex.h
  /usr/include/bits/struct_rwlock.h
  /usr/include/bits/thread-shared-types.h
+ /usr/include/bits/time.h
  /usr/include/bits/time64.h
  /usr/include/bits/timesize.h
  /usr/include/bits/types.h
@@ -124,13 +113,18 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/bits/types/mbstate_t.h
  /usr/include/bits/types/sigset_t.h
  /usr/include/bits/types/struct_FILE.h
+ /usr/include/bits/types/struct___jmp_buf_tag.h
+ /usr/include/bits/types/struct_itimerspec.h
+ /usr/include/bits/types/struct_sched_param.h
  /usr/include/bits/types/struct_timespec.h
  /usr/include/bits/types/struct_timeval.h
+ /usr/include/bits/types/struct_tm.h
  /usr/include/bits/types/time_t.h
  /usr/include/bits/types/timer_t.h
  /usr/include/bits/types/wint_t.h
  /usr/include/bits/typesizes.h
  /usr/include/bits/uintn-identity.h
+ /usr/include/bits/unistd_ext.h
  /usr/include/bits/waitflags.h
  /usr/include/bits/waitstatus.h
  /usr/include/bits/wchar.h
@@ -145,6 +139,8 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/limits.h
  /usr/include/linux/limits.h
  /usr/include/math.h
+ /usr/include/pthread.h
+ /usr/include/sched.h
  /usr/include/stdc-predef.h
  /usr/include/stdint.h
  /usr/include/stdio.h
@@ -154,6 +150,8 @@ CMakeFiles/full3DProject.dir/copyMain.c.o
  /usr/include/sys/cdefs.h
  /usr/include/sys/select.h
  /usr/include/sys/types.h
+ /usr/include/time.h
+ /usr/include/unistd.h
  /usr/include/wchar.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/adxintrin.h
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/amxavx512intrin.h
@@ -286,7 +284,9 @@ full3DProject
  /usr/lib/libc.so
  /usr/lib/libgcc_s.so
  /usr/lib/libgcc_s.so.1
+ /usr/lib/libglfw.so
  /usr/lib/libm.so
+ /usr/lib/libvulkan.so
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a

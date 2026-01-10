@@ -191,22 +191,12 @@ CMakeFiles/full3DProject.dir/copyMain.c.o: \
  /usr/include/SDL2/SDL_render.h /usr/include/SDL2/SDL_shape.h \
  /usr/include/SDL2/SDL_system.h /usr/include/SDL2/SDL_timer.h \
  /usr/include/SDL2/SDL_version.h /usr/include/SDL2/SDL_locale.h \
- /usr/include/SDL2/SDL_misc.h /opt/rocm/include/hip/hip_runtime.h \
- /opt/rocm/include/hip/hip_version.h /opt/rocm/include/hip/hip_common.h \
- /opt/rocm/include/hip/amd_detail/amd_hip_runtime.h \
- /opt/rocm/include/hip/amd_detail/amd_hip_common.h \
- /opt/rocm/include/hip/hip_runtime_api.h \
- /opt/rocm/include/hip/linker_types.h \
- /opt/rocm/include/hip/amd_detail/host_defines.h \
- /opt/rocm/include/hip/driver_types.h \
- /opt/rocm/include/hip/texture_types.h \
- /opt/rocm/include/hip/channel_descriptor.h \
- /opt/rocm/include/hip/amd_detail/amd_channel_descriptor.h \
- /opt/rocm/include/hip/amd_detail/amd_hip_vector_types.h \
- /opt/rocm/include/hip/surface_types.h \
- /opt/rocm/include/hip/amd_detail/amd_hip_runtime_pt_api.h \
- /opt/rocm/include/hip/amd_detail/hip_prof_str.h \
- /opt/rocm/include/hip/hip_deprecated.h \
- /opt/rocm/include/hip/amd_detail/amd_hip_gl_interop.h \
- /opt/rocm/include/hip/library_types.h \
- /opt/rocm/include/hip/hip_vector_types.h
+ /usr/include/SDL2/SDL_misc.h /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/bits/sched.h /usr/include/bits/types/struct_sched_param.h \
+ /usr/include/bits/cpu-set.h /usr/include/time.h /usr/include/bits/time.h \
+ /usr/include/bits/types/struct_tm.h \
+ /usr/include/bits/types/struct_itimerspec.h /usr/include/bits/setjmp.h \
+ /usr/include/bits/types/struct___jmp_buf_tag.h /usr/include/unistd.h \
+ /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+ /usr/include/bits/confname.h /usr/include/bits/getopt_posix.h \
+ /usr/include/bits/getopt_core.h /usr/include/bits/unistd_ext.h

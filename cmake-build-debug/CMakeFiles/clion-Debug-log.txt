@@ -1,4 +1,21 @@
 /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "Unix Makefiles" -S /home/au/CLionProjects/zaawansowanyRaycasting -B /home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug
--- Configuring done (0.4s)
+CMake Warning at CMakeLists.txt:8 (find_package):
+  By not providing "FindopenGL.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "openGL", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "openGL" with any
+  of the following names:
+
+    openGLConfig.cmake
+    opengl-config.cmake
+
+  Add the installation prefix of "openGL" to CMAKE_PREFIX_PATH or set
+  "openGL_DIR" to a directory containing one of the above files.  If "openGL"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+
+
+-- Configuring done (0.1s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/au/CLionProjects/zaawansowanyRaycasting/cmake-build-debug
